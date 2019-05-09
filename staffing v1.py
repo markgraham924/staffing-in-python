@@ -4,8 +4,37 @@ import csv
 def submit():
     #functions for changing staff
     def newUser():
+        def submitUser():
+            #fecthing the varaibles from tkinter
+            forename = ForenameInp.get()
+            surname = SurnameInp.get()
+            dob = DOBInp.get()
+            gender = GenderInp.get()
+            with open('emps.csv', mode='a') as employee_file:
+                employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+                employee_writer.writerow([forename, surname, dob, gender])
+
         newUserWindow = Tk()
-        window.title("New User")
+        newUserWindow.title("New User")
+        lbl = Label(newUserWindow, text="Staffing", font=("Arial Bold", 50)).grid(row=0, column=0, sticky=W)
+        lbl = Label(newUserWindow, text="New User", font=("Arial Bold", 24)).grid(row=1, column=0, sticky=W)
+        lbl = Label(newUserWindow, text="Forename:", font=("Arial Bold", 20)).grid(row=2, column=0, sticky=W)
+        ForenameInp = Entry(newUserWindow,width=10)
+        ForenameInp.grid(row=2, column=1)
+        lbl = Label(newUserWindow, text="Surname:", font=("Arial Bold", 20)).grid(row=3, column=0, sticky=W)
+        SurnameInp = Entry(newUserWindow,width=10)
+        SurnameInp.grid(row=3, column=1)
+        lbl = Label(newUserWindow, text="DOB:", font=("Arial Bold", 20)).grid(row=4, column=0, sticky=W)
+        DOBInp = Entry(newUserWindow,width=10)
+        DOBInp.grid(row=4, column=1)
+        lbl = Label(newUserWindow, text="Gender (m/f):", font=("Arial Bold", 20)).grid(row=5, column=0, sticky=W)
+        GenderInp = Entry(newUserWindow,width=10)
+        GenderInp.grid(row=5, column=1)
+        btn = Button(newUserWindow, command=submitUser, text="Submit", font=("Arial", 18))
+        btn.grid(row=6, column=1)
+
+        
     def viewUser():
         print("view")
     def editUser():
