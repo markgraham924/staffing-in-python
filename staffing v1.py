@@ -10,10 +10,10 @@ def submit():
             surname = SurnameInp.get()
             dob = DOBInp.get()
             gender = GenderInp.get()
+            emp = EmpInp.get()
             with open('emps.csv', mode='a') as employee_file:
                 employee_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-
-                employee_writer.writerow([forename, surname, dob, gender])
+                employee_writer.writerow([forename, surname, dob, gender, emp])
 
         newUserWindow = Tk()
         newUserWindow.title("New User")
@@ -31,12 +31,20 @@ def submit():
         lbl = Label(newUserWindow, text="Gender (m/f):", font=("Arial Bold", 20)).grid(row=5, column=0, sticky=W)
         GenderInp = Entry(newUserWindow,width=10)
         GenderInp.grid(row=5, column=1)
+        lbl = Label(newUserWindow, text="Emp No.:", font=("Arial Bold", 20)).grid(row=6, column=0, sticky=W)
+        EmpInp = Entry(newUserWindow,width=10)
+        EmpInp.grid(row=6, column=1)
         btn = Button(newUserWindow, command=submitUser, text="Submit", font=("Arial", 18))
-        btn.grid(row=6, column=1)
+        btn.grid(row=7, column=1)
 
         
     def viewUser():
-        print("view")
+        viewUserWindow = Tk()
+        viewUserWindow.title("View User")
+        lbl = Label(viewUserWindow, text="Staffing", font=("Arial Bold", 50)).grid(row=0, column=0, sticky=W)
+        lbl = Label(viewUserWindow, text="View User", font=("Arial Bold", 24)).grid(row=1, column=0, sticky=W)
+
+        
     def editUser():
         print("edit")
     def deleteUser():
